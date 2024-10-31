@@ -11,6 +11,10 @@ declare module "@react-three/fiber" {
   }
 }
 
+interface RingData {
+  color: (t: number) => string; // Assuming 'color' is a function that takes a number and returns a string
+}
+
 extend({ ThreeGlobe });
 
 const RING_PROPAGATION_SPEED = 3;
@@ -169,32 +173,32 @@ export function Globe({ globeConfig, data }: WorldProps) {
 
     globeRef.current
       .arcsData(data)
-      .arcStartLat((d) => (d as { startLat: number }).startLat * 1)
-      .arcStartLng((d) => (d as { startLng: number }).startLng * 1)
-      .arcEndLat((d) => (d as { endLat: number }).endLat * 1)
-      .arcEndLng((d) => (d as { endLng: number }).endLng * 1)
-      .arcColor((e: any) => (e as { color: string }).color)
+      .arcStartLat((d) => (d as { startLat: number }).startLat)
+      .arcStartLng((d) => (d as { startLng: number }).startLng)
+      .arcEndLat((d) => (d as { endLat: number }).endLat)
+      .arcEndLng((d) => (d as { endLng: number }).endLng)
+      .arcColor((e: { color: string }) => e.color) // Replace 'any' with a specific type
       .arcAltitude((e) => {
-        return (e as { arcAlt: number }).arcAlt * 1;
+        return (e as { arcAlt: number }).arcAlt;
       })
       .arcStroke(() => {
         return [0.32, 0.28, 0.3][Math.round(Math.random() * 2)];
       })
       .arcDashLength(defaultProps.arcLength)
-      .arcDashInitialGap((e) => (e as { order: number }).order * 1)
+      .arcDashInitialGap((e) => (e as { order: number }).order)
       .arcDashGap(15)
       .arcDashAnimateTime(() => defaultProps.arcTime);
 
     globeRef.current
       .pointsData(data)
-      .pointColor((e) => (e as { color: string }).color)
+      .pointColor((e: { color: string }) => e.color) // Replace 'any' with a specific type
       .pointsMerge(true)
       .pointAltitude(0.0)
       .pointRadius(2);
 
     globeRef.current
       .ringsData([])
-      .ringColor((e: any) => (t: any) => e.color(t))
+      .ringColor((e: RingData) => (t: number) => e.color(t)) // Use the defined interface
       .ringMaxRadius(defaultProps.maxRings)
       .ringPropagationSpeed(RING_PROPAGATION_SPEED)
       .ringRepeatPeriod(
