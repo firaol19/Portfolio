@@ -3,7 +3,6 @@ import React from "react";
 
 import { AnimatePresence, motion } from "framer-motion";
 import { CanvasRevealEffect } from "./ui/canvas-reveal-effect";
-import { div } from "three/webgpu";
 
 export default function Approach() {
   return (
@@ -96,7 +95,7 @@ const Card = ({
   );
 };
 
-const AceternityIcon = ({order}: {order:String}) => {
+const AceternityIcon = ({order}: {order:string}) => {
   return (
     <div id="approach">
       <button className="relative inline-flex h-12 overflow-hidden rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
@@ -110,7 +109,11 @@ const AceternityIcon = ({order}: {order:String}) => {
   );
 };
 
-export const Icon = ({ className, ...rest }: any) => {
+interface IconProps extends React.SVGProps<SVGSVGElement> {
+  className?: string;
+}
+
+export const Icon: React.FC<IconProps> = ({ className, ...rest }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

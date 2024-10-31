@@ -1,4 +1,5 @@
 'use client'
+import Image from "next/image";
 
 import { cn } from "@/utils/cn";
 import { BackgroundGradientAnimation } from "./GradientAnimation";
@@ -74,9 +75,11 @@ export const BentoGridItem = ({
       <div className={`${id === 6} && 'flex justify-center'} h-full`}>
         <div className="w-full h-full absolute">
           {img && (
-            <img
+            <Image
               src={img}
               alt={img}
+              width={30}
+              height={30}
               className={cn(imgClassName, "object-cover,object-center")}
             />
           )}
@@ -87,9 +90,11 @@ export const BentoGridItem = ({
           }`}
         >
           {spareImage && (
-            <img
+            <Image
               src={spareImage}
               alt={spareImage}
+              width={30}
+              height={30}
               className={"object-cover,object-center w-full h-full"}
             />
           )}
@@ -129,7 +134,7 @@ export const BentoGridItem = ({
             <div className="flex gap-1 lg:gap-5 w-fit absolute -bottom-3 -right-3 lg:-right-1">
                 <div className="flex flex-col gap-3 lg:gap-3">
                     {['HTML', 'CSS', 'JavaScript', ].map((item) => (
-                        <span className="py-2  lg:px-3 px-3 text-xs lg:text-base opacity-50 lg:opacity-100 rounded-lg text-center bg-[#10132e]">
+                        <span key={item} className="py-2  lg:px-3 px-3 text-xs lg:text-base opacity-50 lg:opacity-100 rounded-lg text-center bg-[#10132e]">
                             {item}
                         </span>
                     ))}
@@ -138,7 +143,7 @@ export const BentoGridItem = ({
                 <div className="flex flex-col gap-3 lg:gap-3">
                 <span className="py-4 px-3 rounded-lg text-center bg-[#10132e]"></span>
                     {['PHP', 'REACT', 'Next.JS', ].map((item) => (
-                        <span className="py-2  lg:px-3 px-3 text-xs lg:text-base opacity-50 lg:opacity-100 rounded-lg text-center bg-[#10132e]">
+                        <span key={item} className="py-2  lg:px-3 px-3 text-xs lg:text-base opacity-50 lg:opacity-100 rounded-lg text-center bg-[#10132e]">
                             {item}
                         </span>
                     ))}

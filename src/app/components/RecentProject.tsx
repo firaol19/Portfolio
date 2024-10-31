@@ -2,6 +2,7 @@ import { projects } from "@/data";
 import { PinContainer } from "./ui/3d-pin";
 import { FaLocationArrow } from "react-icons/fa";
 
+
 export default function RecentProject() {
   return (
     <div className="py-20" id="projects">
@@ -42,7 +43,7 @@ export default function RecentProject() {
                         className="border border-white/[0.2] rounded-full bg-black lg:h-10 lg:w-10 w-8 h-8 flex justify-center items-center"
                         style={{ transform: `translateX(-${5 * index * 2}px)` }}
                       >
-                        <img src={icon} alt={icon} className="p-2" />
+                        <img src={icon} alt={icon} className="p-2"  />
                       </div>
                     ))}
                   </div>
